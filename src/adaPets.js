@@ -7,6 +7,7 @@ const setError = result.setError;
 
 const BASE_URL = "https://petdibs.herokuapp.com/pets/";
 
+
 // Option functions.
 const listPets = () => {
   axios.get(BASE_URL)
@@ -23,8 +24,19 @@ const showDetails = (selectedPet) => {
     return;
   }
 
-  // Fill out as part of Wave 2.
+  axios.get(`https://petdibs.herokuapp.com/pets/${selectedPet}`)
+    
+  .then((response) => {
+      setResult(response.data)})
+    
+  .catch((error) => {
+     setError("failed & details");
+    });
 }
+
+
+  // Fill out as part of Wave 2.
+
 
 const removePet = (selectedPet) => {
   if (!selectedPet) {
