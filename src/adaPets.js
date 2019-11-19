@@ -30,19 +30,25 @@ const showDetails = (selectedPet) => {
       setResult(response.data)})
     
   .catch((error) => {
-     setError("failed & details");
+     setError("failed search, cannot show details");
     });
 }
-
-
-  // Fill out as part of Wave 2.
-
 
 const removePet = (selectedPet) => {
   if (!selectedPet) {
     setError("You tried to remove a pet without selecting it!");
     return;
   }
+
+ 
+  axios.delete(`https://petdibs.herokuapp.com/pets/${selectedPet}`)
+    
+  .then((response) => {
+      setResult(response.data)})
+    
+  .catch((error) => {
+     setError("failed to remove pet");
+    });
 
   // Fill out as part of Wave 3.
 }
